@@ -107,9 +107,9 @@ def seed_sample_event(db: Session):
         return existing
         
     event = Event(
-        title="International Tech and Innovation Summit 2026",
-        description="The premier global conference on artificial intelligence, software architecture, and full-stack engineering.",
-        venue="Metropolitan Symphony and Convention Center, Hall A",
+        title="DevCon: Global Software Engineering Conference",
+        description="Annual conference bringing together software engineers, system architects, and technology leaders for keynotes and technical workshops.",
+        venue="Downtown Convention Center, Grand Auditorium",
         date_time=datetime.utcnow() + timedelta(days=30),
         total_seats=60
     )

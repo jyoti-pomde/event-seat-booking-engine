@@ -42,7 +42,7 @@ def test_get_events(client):
     assert response.status_code == 200
     data = response.json()
     assert len(data) >= 1
-    assert "Tech and Innovation Summit" in data[0]["title"]
+    assert "DevCon" in data[0]["title"]
     assert len(data[0]["tiers"]) == 3
 
 def test_get_event_seats(client):
