@@ -1,0 +1,41 @@
+﻿# Python
+__pycache__/
+*.py[cod]
+*.class
+*.so
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+.venv
+
+# Database
+*.db
+*.sqlite3
+*.sqlite
+
+# Node / Frontend
+node_modules/
+dist/
+dist-ssr/
+*.local
+.pnp
+.pnp.js
+
+# Environment & Secrets
+.env
+.env.local
+.env.*.local
+*.secret
+*.pem
+*.key
+
+# IDE / OS
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
