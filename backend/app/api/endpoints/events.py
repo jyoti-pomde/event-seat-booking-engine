@@ -43,12 +43,14 @@ def get_seats(event_id: int, db: Session = Depends(get_db)):
 
 @router.post("/events/{event_id}/hold", response_model=HoldResponse)
 def hold_seat_selection(event_id: int, request: HoldRequest, db: Session = Depends(get_db)):
+    duration = request.hold_duration_seconds or 600
     token, expires_at, total_price = hold_seats(
-        db, event_id, request.seat_ids, request.hold_duration_seconds or 600
+        db, event_id, request.seat_ids, duration
     )
     return HoldResponse(
         hold_token=token,
         expires_at=expires_at,
+        expires_in_seconds=duration,
         seat_ids=request.seat_ids,
         total_price=total_price,
     )

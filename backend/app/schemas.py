@@ -39,6 +39,7 @@ class HoldRequest(BaseModel):
 class HoldResponse(BaseModel):
     hold_token: str
     expires_at: datetime
+    expires_in_seconds: int = 600
     seat_ids: List[int]
     total_price: float
 

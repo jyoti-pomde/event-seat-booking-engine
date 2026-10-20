@@ -77,8 +77,8 @@ export default function App() {
       setTimeLeft(0);
       return;
     }
-    const timer = setInterval(() => {
-      const diff = Math.max(0, Math.floor((new Date(holdExpiresAt) - new Date()) / 1000));
+    const updateCountdown = () => {
+      const diff = Math.max(0, Math.floor((holdExpiresAt - Date.now()) / 1000));
       setTimeLeft(diff);
       if (diff <= 0) {
         setHoldToken(null);
@@ -87,7 +87,9 @@ export default function App() {
         setErrorMsg("Your seat hold has expired. Please select your seats again.");
         refreshSeatsOnly();
       }
-    }, 1000);
+    };
+    updateCountdown();
+    const timer = setInterval(updateCountdown, 1000);
     return () => clearInterval(timer);
   }, [holdExpiresAt]);
 
@@ -124,8 +126,9 @@ export default function App() {
     setErrorMsg(null);
     try {
       const res = await holdSeats(event.id, selectedSeatIds, 600);
+      const durationSec = res.expires_in_seconds || 600;
       setHoldToken(res.hold_token);
-      setHoldExpiresAt(res.expires_at);
+      setHoldExpiresAt(Date.now() + durationSec * 1000);
       await refreshSeatsOnly();
     } catch (err) {
       setErrorMsg(err.message);
